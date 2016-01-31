@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class PrimitiveCalc {
 
-   public static void main(String[] args) {
+    public static void main(String[] args) {
      
      Scanner sc = new Scanner(System.in);  
      try{
@@ -14,33 +14,35 @@ public class PrimitiveCalc {
          double secondNum;
          String operation;
          
-         if(args.length == 3){
-          firstNum = Double.parseDouble(args[0]);
-          secondNum = Double.parseDouble(args[2]);
-          operation = args[1];
-         } 
-         else{
-          if(args.length == 1){
-          firstNum = Double.parseDouble(args[0]);
-          System.out.println("Введите второе число");
-          secondNum = Double.parseDouble(sc.nextLine());
-          System.out.println("Введите операцию:");
-          operation = sc.nextLine();
+         System.out.println("Список операций: " + "\n" + " + \n"+" - \n" + " \"*\" \n" + " / \n"); 
+         
+            if(args.length == 1){
+            firstNum = Double.parseDouble(args[0]);
+            System.out.println("Введите второе число:");
+            secondNum = Double.parseDouble(sc.nextLine());
+            System.out.println("Введите операцию:");
+            operation = sc.nextLine();
+            
           } else if(args.length == 2){
-          firstNum = Double.parseDouble(args[0]);
-          operation = args[1];
-          System.out.println("Введите второе число");
-          secondNum = Double.parseDouble(sc.nextLine());
-         }
-          else{
-           System.out.println("Введите первое число:");
-           firstNum = Double.parseDouble(sc.nextLine());
-           System.out.println("Введите второе число");
-           secondNum = Double.parseDouble(sc.nextLine());
-           System.out.println("Введите операцию");
-           operation = sc.nextLine();
+            firstNum = Double.parseDouble(args[0]);
+            operation = args[1];
+            System.out.println("Введите второе число:");
+            secondNum = Double.parseDouble(sc.nextLine());
+            
+          } else if(args.length == 3){
+            firstNum = Double.parseDouble(args[0]);
+            secondNum = Double.parseDouble(args[2]);
+            operation = args[1];
+          }
+            else{
+             System.out.println("Введите первое число:");
+             firstNum = Double.parseDouble(sc.nextLine());
+             System.out.println("Введите второе число:");
+             secondNum = Double.parseDouble(sc.nextLine());
+             System.out.println("Введите операцию:");
+             operation = sc.nextLine();
            }
-        }
+        
       switch(operation){
           
          case "+": System.out.println("Результат:" + " " + firstNum + " + " + secondNum + " = " + sum(firstNum, secondNum));
@@ -51,24 +53,25 @@ public class PrimitiveCalc {
                    break;
          case "/": System.out.println("Результат:" + " " + firstNum + " / " + secondNum + " = " + divide(firstNum, secondNum));;
                    break;    
-         default: System.out.println("Некорректный ввод. Повторите ещё раз.");
+         default: System.out.println("Неизвестная операция.");
+                  System.out.println("Используйте одну из известных операций: " + "\n" + " + \n"+" - \n" + " \"*\" \n" + " / \n");
                    break; 
        }
      } 
       catch(NumberFormatException nf){
-          System.err.println("Число введено не верно");
-          nf.printStackTrace();
-          nf.getMessage();
+         System.err.println("Число введено некорректно");
+         nf.printStackTrace();
+         nf.getMessage();
      }
-     catch(ArrayIndexOutOfBoundsException ie){
-      System.err.println("Ошибка связанная с размерностью массива");
-      ie.printStackTrace();
-      ie.getMessage();
+      catch(ArrayIndexOutOfBoundsException ie){
+        System.err.println("Ошибка связанная с размерностью массива");
+        ie.printStackTrace();
+        ie.getMessage();
      }
-     catch(Exception ex){
-       System.out.println("Ошибка");   
-       ex.printStackTrace();
-       ex.getMessage();
+      catch(Exception ex){
+        System.out.println("Ошибка");   
+        ex.printStackTrace();
+        ex.getMessage();
      }
   } 
     public static double sum(double firstNum, double secondNum) {
@@ -86,4 +89,5 @@ public class PrimitiveCalc {
     public static double divide(double firstNum, double secondNum){
      return (firstNum/secondNum);
     }
+    
 }
